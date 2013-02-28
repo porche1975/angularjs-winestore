@@ -1,65 +1,32 @@
 <!DOCTYPE HTML>
-<html>
-<head>
-<title>Backbone Cellar</title>
-<link rel="stylesheet" href="stylesheets/styles.css" />
+<html ng-app="winestoreapp">
+<head >
+    <meta charset="utf-8">
+    <title>Angular.js Cellar</title>
+    <link rel="stylesheet" href="stylesheets/styles.css" />
+    <script src="javascripts/lib/angularjs-1.0.2/angular.js"></script>
+    <script type="text/javascript" src="javascripts/main.js"></script>
+    <script src="javascripts/controllers.js"></script>
+    <script type="text/javascript" src="javascripts/services.js"></script>
+    <script src="javascripts/lib/angularjs-1.0.2/angular-resource.js"></script>
 </head>
 
 <body>
-
-<div id="header"><h1>Backbone Cellar</h1></div>
-
-<div id="sidebar"></div>
-
-<div id="content">
-<h2>Welcome to Backbone Cellar</h2>
-<p>
-This is a sample application part of of three-part tutorial showing how to build a CRUD application with Backbone.js.
-</p>
-</div>
-
-<!-- Templates -->
-<script type="text/template" id="tpl-header">
-    <span class="title">Backbone Cellar</span>
-	<button class="new">New Wine</button>
-</script>
-
-<script type="text/template" id="tpl-wine-list-item">
-	<a href='#wines/<%= _id %>'><%= name %></a>
-</script>
-
-<script type="text/template" id="tpl-wine-details">
-
-    <div class="form-left-col">
-        <label>Id:</label>
-        <input type="text" id="wineId" name="id" value="<%= _id %>" disabled />
-        <label>Name:</label>
-        <input type="text" id="name" name="name" value="<%= name %>" required/>
-        <label>Grapes:</label>
-        <input type="text" id="grapes" name="grapes" value="<%= grapes %>"/>
-        <label>Country:</label>
-        <input type="text" id="country" name="country" value="<%= country %>"/>
-        <label>Region:</label>
-        <input type="text" id="region" name="region"  value="<%= region %>"/>
-        <label>Year:</label>
-        <input type="text" id="year" name="year"  value="<%= year %>"/>
-        <button class="save">Save</button>
-        <button class="delete">Delete</button>
+ 
+    <div id="header">
+        <span class="title">Angular.js Cellar</span>
+        <button class="new">New Wine</button>
     </div>
 
-    <div class="form-right-col">
-        <img height="300" src="pics/<%= picture %>"/>
-        <label>Notes:</label>
-        <textarea id="description" name="description"><%= description %></textarea>
+    <div id="sidebar" class="leftArea" ng-controller="WineListCtrl">
+        <ul id="wineList">
+            <li ng-repeat="wine in wines">
+                <a href='#/wines/{{wine._id}}'>{{wine.name}}</a>
+            </li>
+        </ul>
     </div>
 
-</script>
+    <div id="content" ng-view></div>
 
-<!-- JavaScript -->
-<script src="javascripts/lib/jquery-1.7.1.min.js"></script>
-<script src="javascripts/lib/underscore-min.js"></script>
-<script src="javascripts/lib/backbone-min.js"></script>
-<script src="javascripts/main.js"></script>
-
-</body>
+    </body>
 </html>
